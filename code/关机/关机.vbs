@@ -1,3 +1,4 @@
+' ÒÔ¹ÜÀíÔ±ÔËÐÐ
 Set WshShell = WScript.CreateObject("WScript.Shell")
 If WScript.Arguments.Length = 0 Then
   Set ObjShell = CreateObject("Shell.Application")
@@ -7,61 +8,56 @@ If WScript.Arguments.Length = 0 Then
 End if
 
 
-
 Set objShell = CreateObject("WScript.Shell")
 
-' ????????
+' µ¯´° yes¹Ø»ú noÈ¡Ïû¹Ø»ú
 Dim result
-result = objShell.Popup("Ñ¡???Ø»? ?????Ø»?:", 0, "MoYuWang", vbQuestion + vbYesNo)
+result = objShell.Popup("ÊÇ£¨¹Ø»ú£©\·ñ£¨È¡Ïû¹Ø»ú£©", 0, "MoYuWang", vbQuestion + vbYesNo)
 
-' ???Ñ¡?
+' ÅÐ¶Ï·ÖÖ§
 If result = vbYes Then
     Shutdown
 ElseIf result = vbNo Then
     CancelShutdown
 Else
-    MsgBox "??Ê±"
+    MsgBox "³¬Ê±"
 End If
 
 
-' È¡??Ø»?
+' È¡Ïû¹Ø»ú
 Sub CancelShutdown()
     Dim result
     result = objShell.Run("shutdown -a", 0, True)
-    ' ?????????Ä½?
     If result = 0 Then
-        MsgBox "È¡??É¹?"
+        MsgBox "È¡Ïû³É¹¦"
     Else
-        MsgBox "È¡?Ê§??"
+        MsgBox "µ±Ç°Î´ÉèÖÃ¶¨Ê±¹Ø»ú"
     End If
 End Sub
 
 
-' ?Ø»?
+' ¹Ø»ú
 Sub Shutdown()
     Dim timeInput
-    timeInput = InputBox("????Ø»??????Ê±?ä£¨??Ó£???", "?Ø»??????")
-     ' ???Ã»??????È¡???Å¥
+    timeInput = InputBox("ÇëÊäÈëÔ¤¶¨¹Ø»úÊ±¼ä£¨·ÖÖÓ£©", "MoYuWang")
+    ' ÅÐ¶Ï°´Å¥Ñ¡Ôñ
     If timeInput <> "" Then
         Dim timeMinutes
         timeMinutes = CInt(timeInput)
         
-        ' Ö´??Ø»???î£¬???????????Ä½?
+        ' ?¹Ø»úÃüÁî
         Dim result
         result = objShell.Run ("shutdown -s -t " & timeMinutes * 60, 0, True)
-        
-        ' ?????????Ä½?
+
         If result = 0 Then
-            ' ?Ø»???????É¹?
-            MsgBox "?Ø»??Æ»????????? " & timeMinutes & " ??Óº?????"
+            ' MsgBox "½«ÔÚ" & timeMinutes & "·ÖÖÓºó¹Ø»ú"
         Else
-            ' ?Ø»??????Ê§??
-            MsgBox "?Ø»??????Ê§?Ü¡?"
+            MsgBox "¹Ø»úÃüÁîÖ´ÐÐÊ§°Ü"
         End If
 
     Else
-        ' ?????È¡???Å¥????Ö´??Ø»????
-        MsgBox "È¡??Ë¹Ø»??Æ»???"
+        ' È¡ÏûÊäÈë
+        MsgBox "È¡Ïû¶¨Ê±¹Ø»ú"
     End If
 End SUb
 
