@@ -27,8 +27,20 @@ Option Explicit
 ' 计算逻辑 diff(当前时间, 出生年月+退休年限) 取时间差(包含闰年366天)
 
 Dim filePath
+Dim isFile ' 文件是否存在
+Dim currentDate
+Dim retirementAge 'ÍËÐÝÄêÏÞ
+Dim birthDate
+
+
+
 filePath = "D:\file.txt"
-isFileExist  filePath ' 调用函数读取文件内容
+currentDate = DateValue(Year(Now) & "-" & Month(Now) & "-" & Day(Now)) 
+retirementAge = 60
+
+
+
+isFileExist filePath ' 调用函数读取文件内容  
 
 
 Sub isFileExist(filePath)
@@ -77,19 +89,18 @@ Sub ReadFile(filePath)
     Set fso = Nothing
 End Sub
 
-' Dim input1, input2
-' input1 = InputBox("1")
-' input2 = InputBox("2")
-
-' Dim btn1, btn2
-' btn1 = MsgBox("1", vbInformation, "1")
-' btn2 = MsgBox("2", vbInformation, "2")
-
-Set objShell = CreateObject("WScript.Shell")
-Set objForm = objShell.Popup("1", 0, "1", 64 + 1)
-
-If objForm = 1 Then
-    MsgBox "1"
-ElseIf objForm = 2 Then
-    MsgBox "2"
-End If
+Sub Shutdown()
+    Dim dateInput
+    Dim isValid
+    dateInput = InputBox("Please enter the date of birth", "MoYuWang")
+    If dateInput <> "" Then
+        isValid = IsDate(dateInput)
+        If isValid Then
+           birthDate = dateInput
+        Else
+            MsgBox "Invalid value."
+        End If
+    Else
+        MsgBox "exit"
+    End If
+End SUb

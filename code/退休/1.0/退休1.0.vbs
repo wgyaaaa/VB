@@ -9,7 +9,7 @@ Sub CalculateRetirement()
     retirementAge = 60
     ' 手动更改出生年月
     birthDate = DateValue("2000-05-17")
-    gundanDay = DateValue(Year(DateAdd("yyyy", 60, birthDate)) & "-" & Month(Now) & "-" & Day(Now)) 
+    gundanDay = DateValue(Year(DateAdd("yyyy", 60, birthDate)) & "-" & Month(birthDate) & "-" & Day(birthDate))
     daysDiff = DateDiff("d", currentDate, gundanDay)
     MsgBox "退休还有" & daysDiff & "天"
 End Sub
